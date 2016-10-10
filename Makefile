@@ -9,5 +9,5 @@ kernel: kernel.c
 	$(CC) -c kernel.c -o kernel.o -std=gnu99 -ffreestanding -O2 -Wall -Wextra
 clean:
 	rm -rf *.bin *.o
-run:
+run: all
 	$(QEMU) -kernel myos.bin
