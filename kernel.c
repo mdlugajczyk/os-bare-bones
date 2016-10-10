@@ -68,6 +68,11 @@ void terminal_put_entry_at(char c, uint8_t color, size_t x, size_t y) {
 }
 
 void terminal_put_char(char c) {
+  if (c == '\n') {
+    terminal_column++;
+    terminal_row = 0;
+    return;
+  }
   terminal_put_entry_at(c,terminal_color,terminal_column,terminal_row);
   if (++terminal_column == VGA_WIDTH) {
     terminal_column = 0;
@@ -99,5 +104,5 @@ void terminal_writestring(const char *data) {
 
 void kernel_main() {
   terminal_initialize();
-  terminal_writestring("Hello, kernel World!");
+  terminal_writestring("Hello, kernel World!\n");
 }
